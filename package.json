@@ -1,0 +1,22 @@
+{
+  "name": "chat-gpt-slack-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oka311119/chat-gpt-slack-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oka311119/chat-gpt-slack-bot/issues"
+  },
+  "homepage": "https://github.com/oka311119/chat-gpt-slack-bot#readme",
+  "dependencies": {
+    "@slack/web-api": "^6.8.1"
+  }
+}
