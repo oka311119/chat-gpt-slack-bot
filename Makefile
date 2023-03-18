@@ -5,3 +5,6 @@ deploy:
 
 local:
 	serverless offline --noPrependStageInUrl && ngrok http 3000
+
+remove:
+	serverless remove --stage dev
