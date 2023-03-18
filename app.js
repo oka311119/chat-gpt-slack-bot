@@ -1,5 +1,7 @@
 const { App, AwsLambdaReceiver } = require('@slack/bolt');
+const { ask } = require('./chatgpt');
 const dotenv = require('dotenv');
+
 dotenv.config();
 
 const awsLambdaReceiver = new AwsLambdaReceiver({
@@ -11,9 +13,12 @@ const app = new App({
   receiver: awsLambdaReceiver,
 });
 
-// Add your app's event listeners and other logic here
-app.event('app_mention', async ({ event, say }) => {
-  await say(`Hello, <@${event.user}>!\nThis message is from AWS Lambda🐑🐑🐑`);
-});
+const handleAppMention = async ({ event, say }) => {
+  const question = event.text.replace(/<@.+>\s*/, '');
+  const answer = await ask(question);
+  await say(`${answer}`);
+};
+
+app.event('app_mention', handleAppMention);
 
 module.exports = { app, awsLambdaReceiver };

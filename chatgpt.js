@@ -2,18 +2,19 @@ const { Configuration, OpenAIApi } = require('openai');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const configuration = new Configuration({
+const config = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 });
+const openai = new OpenAIApi(config);
+const model = process.env.CHATGPT_MODEL ?? 'gpt-3.5-turbo-0301';
 
-const openai = new OpenAIApi(configuration);
-
-async function ask(content, model = process.env.CHATGPT_MODEL) {
+async function ask(content) {
     const response = await openai.createChatCompletion({
         model: model,
         messages: [{ role: "user", content: content }],
     });
 
-    const answer = response.data.choices[0].message?.content;
-    console.log(answer);
+    return response.data.choices[0].message?.content ?? "chatgpt ${model}: no answer";
 }
+
+module.exports = { ask };
