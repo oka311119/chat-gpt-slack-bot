@@ -1,5 +1,6 @@
 const { Configuration, OpenAIApi } = require('openai');
 const dotenv = require('dotenv');
+
 dotenv.config();
 
 const config = new Configuration({
@@ -14,7 +15,7 @@ async function ask(content) {
         messages: [{ role: "user", content: content }],
     });
 
-    return response.data.choices[0].message?.content ?? "chatgpt ${model}: no answer";
+    return response.data.choices[0].message?.content;
 }
 
 module.exports = { ask };

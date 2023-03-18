@@ -14,7 +14,9 @@ const app = new App({
 });
 
 const handleAppMention = async ({ event, say }) => {
+  console.log(event)
   const question = event.text.replace(/<@.+>\s*/, '');
+  console.log(question)
   const answer = await ask(question);
   await say(`${answer}`);
 };

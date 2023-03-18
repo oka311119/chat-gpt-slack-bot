@@ -3,6 +3,7 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs14.x
+  timeout: 180
   stage: ${opt:stage, 'dev'}
   region: ap-northeast-1
 functions:
